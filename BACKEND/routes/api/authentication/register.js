@@ -35,7 +35,7 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, email, password, phone, date } = req.body;
+        const { name, email, password, phone, date,role } = req.body;
         try {
             //see iif user exists
             let user = await User.findOne({ phone });
@@ -49,6 +49,7 @@ router.post(
                 password,
                 phone,
                 date,
+                role
             });
             console.log(user)
 

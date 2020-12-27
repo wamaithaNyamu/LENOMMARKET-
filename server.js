@@ -14,6 +14,14 @@ app.use("/register", require("./BACKEND/routes/api/authentication/register"));
 app.use("/login", require("./BACKEND/routes/api/authentication/login"));
 
 //add routes here
+//products
+app.use("/createProduct", require("./BACKEND/routes/api/Products/createProduct"))
+app.use("/singleProduct", require("./BACKEND/routes/api/Products/singleProduct"))
+
+//announcements
+app.use("/createAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/createAnnouncement"))
+app.use("/singleAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/singleAnnouncement"))
+
 
 const PORT = process.env.PORT || 8080;
 
