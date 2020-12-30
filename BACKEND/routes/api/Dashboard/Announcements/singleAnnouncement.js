@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../../../Middleware/auth");
-const Product = require("../../../../Models/Dashboard/Announcements/Announcements");
+const Announcement = require("../../../../Models/Dashboard/Announcements/Announcements");
 const { check, validationResult } = require("express-validator/check");
 
 
@@ -11,17 +11,17 @@ const { check, validationResult } = require("express-validator/check");
 
 router.get("/:announcement_id", auth, async (req, res) => {
     try {
-        const product = await Product.findOne({
+        const announcement = await Announcement.findOne({
             AnnouncementID: req.params.announcement_id,
         });
-        //if the product doesnt exists in the db
-        if (!product){
+        //if the Announcement doesnt exists in the db
+        if (!announcement){
 
             return res.status(400).json({ msg: "Announcement not found" });
         }
-        // if product exists
+        // if Announcement exists
 
-        res.json(product);
+        res.json(announcement);
 
     } catch (e) {
         console.error(e.message);
@@ -92,23 +92,23 @@ router.post(
 
         try {
             //confirm its in the db
-            let product = await Product.findOne({ AnnouncementID: req.params.announcement_id });
-            if (product) {
+            let announcement = await Announcement.findOne({ AnnouncementID: req.params.announcement_id });
+            if (announcement) {
                 //    update profile
-                product = await Product.findOneAndUpdate(
+                announcement = await Announcement.findOneAndUpdate(
                     {  AnnouncementID: req.params.announcement_id  },
                     { $set: announcementFields },
                     { new: true }
                 );
 
-                console.log('updated product', product)
+                console.log('updated Announcement', announcement)
 
-                return res.json(product);
+                return res.json(announcement);
             }
 
         } catch (e) {
             console.error(e.message);
-            res.status(500).send("An error occurred while updating the product");
+            res.status(500).send("An error occurred while updating the Announcement");
         }
     }
 );
@@ -122,8 +122,8 @@ router.post(
 
 router.delete("/:announcement_id", auth, async (req, res) => {
     try {
-        //delete product
-        await Product.findOneAndRemove({ AnnouncementID: req.params.announcement_id });
+        //delete Announcement
+        await Announcement.findOneAndRemove({ AnnouncementID: req.params.announcement_id });
 
         res.json({ msg: "Announcement deleted " });
     } catch (e) {

@@ -19,8 +19,10 @@ app.use("/createProduct", require("./BACKEND/routes/api/Products/createProduct")
 app.use("/singleProduct", require("./BACKEND/routes/api/Products/singleProduct"))
 
 //announcements
-app.use("/createAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/createAnnouncement"))
-app.use("/singleAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/singleAnnouncement"))
+app.use("/createAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/createAnnouncement"));
+app.use("/singleAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/singleAnnouncement"));
+app.use("/newStaff", require("./BACKEND/routes/api/Dashboard/Staff/createStaff"));
+
 
 
 const PORT = process.env.PORT || 8080;

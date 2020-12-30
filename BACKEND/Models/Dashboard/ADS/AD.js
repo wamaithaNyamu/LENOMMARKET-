@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const AnnouncementSchema = new mongoose.Schema({
+const ADSchema = new mongoose.Schema({
     ADID :{
         type:String,
         required: true,
@@ -11,19 +11,11 @@ const AnnouncementSchema = new mongoose.Schema({
         required: true,
         default:"default"
     },
-
     mediaUrl:{
         type: String,
-
     },
-
-    status:{
-        type:String,
-        default:"inactive"
-
-    }
 
 
 });
 
-module.exports = Announcements = mongoose.model("Announcements", AnnouncementSchema);
+module.exports = ADS = mongoose.model("ADS", ADSchema);

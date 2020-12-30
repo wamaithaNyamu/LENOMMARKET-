@@ -1,49 +1,41 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../../../Middleware/auth");
-const Product = require("../../../../Models/Dashboard/Announcements/Announcements");
+const Ad = require("../../../../Models/Dashboard/ADs/ADs");
 const { check, validationResult } = require("express-validator/check");
 
 
-// @router  GET /:announcement_id
-// @desc    Get single announcement by ID
+// @router  GET /:ad_id
+// @desc    Get single AD by ID
 // @access  Private
 
-router.get("/:announcement_id", auth, async (req, res) => {
+router.get("/:ad_id", auth, async (req, res) => {
     try {
-        const product = await Product.findOne({
-            AnnouncementID: req.params.announcement_id,
+        const Ad = await Ad.findOne({
+            ADID: req.params.ad_id,
         });
-        //if the product doesnt exists in the db
-        if (!product){
+        //if the Ad doesnt exists in the db
+        if (!Ad){
 
-            return res.status(400).json({ msg: "Announcement not found" });
+            return res.status(400).json({ msg: "AD not found" });
         }
-        // if product exists
+        // if Ad exists
 
-        res.json(product);
+        res.json(Ad);
 
     } catch (e) {
         console.error(e.message);
-        return res.status(400).json({ msg: "Something went wrong while fetching the announcement." });
+        return res.status(400).json({ msg: "Something went wrong while fetching the AD." });
     }
 });
 
-// @router  POST /:announcement_id
-// @desc    Update a single announcement by ID from admin dashboard
+// @router  POST /:ad_id
+// @desc    Update a single AD by ID from admin dashboard
 // @access  Private
 router.post(
-    "/:announcement_id",
+    "/:ad_id",
     [auth, [check("name", "Name is required").not().isEmpty()],
-        [check("category", "Category is required").not().isEmpty()],
-        [check("subcategory", "Subcategory is required").not().isEmpty()],
-        [check("price", "Price is required").not().isEmpty()],
-        [check("description", "Description is required").not().isEmpty()],
-        [check("colors", "Colors is required").not().isEmpty()],
-        [check("size", "Size is required").not().isEmpty()],
-        [check("specification", "Specification is required").not().isEmpty()],
-        [check("imageVariants", "Image variants is required").not().isEmpty()],
-        [check("imageVariantDescription", "Image variant description is required").not().isEmpty()],
+        [check("mediaUrl", "Media is required").not().isEmpty()],
 
 
     ],
@@ -53,62 +45,41 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
         const {
-            AnnouncementID,
+            ADID,
             name,
-            category,
-            subcategory,
-            discount,
-            price,
-            description,
-            colors,
-            size,
-            additionalInfo,
-            specification,
-            topSelling,
-            imageVariants,
-            imageVariantDescription,
+            mediaUrl,
+
 
         } = req.body;
 
         //build profile object
-        const announcementFields = {};
+        const ADFields = {};
 
-        if(AnnouncementID) announcementFields.AnnouncementID = req.params.announcement_id;
-        if (name) announcementFields.name = name;
-        if(category) announcementFields.category = category;
-        if(subcategory) announcementFields.subcategory = subcategory;
-        if(discount) announcementFields.discount = discount;
-        if(price) announcementFields.price = price;
-        if(description) announcementFields.description = description;
-        if(colors) announcementFields.colors = colors;
-        if(size) announcementFields.size = size;
-        if(additionalInfo) announcementFields.additionalInfo = additionalInfo;
-        if(specification) announcementFields.specification = specification
-        if(topSelling) announcementFields.topSelling = topSelling;
-        if(imageVariants) announcementFields.imageVariants = imageVariants
-        if(imageVariantDescription) announcementFields.imageVariantDescription = imageVariantDescription
+        if(ADID) ADFields.ADID = req.params.ad_id;
+        if (name) ADFields.name = name;
+        if(mediaUrl) ADFields.mediaUrl = mediaUrl;
 
 
 
         try {
             //confirm its in the db
-            let product = await Product.findOne({ AnnouncementID: req.params.announcement_id });
-            if (product) {
+            let Ad = await Ad.findOne({ ADID: req.params.ad_id });
+            if (Ad) {
                 //    update profile
-                product = await Product.findOneAndUpdate(
-                    {  AnnouncementID: req.params.announcement_id  },
-                    { $set: announcementFields },
+                Ad = await Ad.findOneAndUpdate(
+                    {  ADID: req.params.ad_id  },
+                    { $set: ADFields },
                     { new: true }
                 );
 
-                console.log('updated product', product)
+                console.log('updated Ad', Ad)
 
-                return res.json(product);
+                return res.json(Ad);
             }
 
         } catch (e) {
             console.error(e.message);
-            res.status(500).send("An error occurred while updating the product");
+            res.status(500).send("An error occurred while updating the Ad");
         }
     }
 );
@@ -116,19 +87,19 @@ router.post(
 
 
 
-// @router  DELETE /:announcement_id
-// @desc    Delete announcement from admin dashboard
+// @router  DELETE /:ad_id
+// @desc    Delete AD from admin dashboard
 // @access  Private
 
-router.delete("/:announcement_id", auth, async (req, res) => {
+router.delete("/:ad_id", auth, async (req, res) => {
     try {
-        //delete product
-        await Product.findOneAndRemove({ AnnouncementID: req.params.announcement_id });
+        //delete Ad
+        await Ad.findOneAndRemove({ ADID: req.params.ad_id });
 
-        res.json({ msg: "Announcement deleted " });
+        res.json({ msg: "AD deleted " });
     } catch (e) {
         console.error(e.message);
-        res.status(500).send("An error occurred while trying to delete the announcement");
+        res.status(500).send("An error occurred while trying to delete the AD");
     }
 });
 

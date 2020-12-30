@@ -4,11 +4,10 @@ let User = require("../../../Models/authentication/User.js");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 require('dotenv').config({path:path.resolve(__dirname, '../../../env')})
+const JWTSECRET = process.env.jwtSecret
 
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-
-const JWTSECRET = process.env.jwtSecret
 
 
 // @router  POST api/users
@@ -23,10 +22,7 @@ router.post(
             "password",
             "Please enter a password with six or more characters"
         ).isLength({ min: 6 }),
-        check(
-            "phone",
-            "Please enter a valid phone number of the form 0712123123"
-        ).isLength({ min: 10 }),
+
     ],
 
     async (req, res) => {
@@ -35,10 +31,10 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { name, email, password, phone, date,role } = req.body;
+        const { name, email, password, date,role } = req.body;
         try {
             //see iif user exists
-            let user = await User.findOne({ phone });
+            let user = await User.findOne({ email});
             if (user) {
                 res.status(400).json({ errors: [{ msg: "User already exists" }] });
             }
@@ -47,7 +43,6 @@ router.post(
                 name,
                 email,
                 password,
-                phone,
                 date,
                 role
             });
@@ -64,7 +59,10 @@ router.post(
                 user: {
                     id: user.id,
                 },
+
+
             };
+            console.log('PAYLOAD',payload)
             jwt.sign(
                 payload,
                 JWTSECRET,

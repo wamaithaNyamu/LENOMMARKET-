@@ -18,7 +18,7 @@ const jwtSecret = process.env.jwtSecret
 router.post(
     "/",
     [
-        check("phone", "Phone number is required").exists(),
+        check("email", "Email is required").exists(),
         check("password", "Password is required").exists(),
     ],
 
@@ -28,13 +28,15 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
 
-        const { phone, password } = req.body;
+        const { email, password } = req.body;
         try {
             //see iif user exists
-            let user = await User.findOne({ phone });
+            let user = await User.findOne({ email });
             if (!user) {
                 res.status(400).json({ errors: [{ msg: "Invalid credentials" }] });
-            }
+            }else{
+
+
 
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
@@ -45,9 +47,7 @@ router.post(
                 user: {
                     id: user.id,
                 },
-                role: {
-                    role: user.role,
-                },
+
             };
             jwt.sign(
                 payload,
@@ -60,6 +60,10 @@ router.post(
                     res.json({ token });
                 }
             );
+            }
+
+
+
         } catch (e) {
             console.error(e.message);
             res.status(500).send("Server error");
