@@ -1,51 +1,53 @@
 const mongoose = require("mongoose");
 
 const StaffSchema = new mongoose.Schema({
-    staff: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
-    },
-    staffID :{
-        type:String,
-        required: true,
-        unique:true
-    },
-    fname: {
+    admin: {
         type: String,
         required: true,
+    },
+    userRef: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "user"
+    },
+    staffID : {
+      type: String,
+      required: true
+    },
+    admin : {
+        type: String,
+        required: true
+    },
+    email:{
+        type: String,
+        unique:true
+    },
+    storeLocation:{
+        type:String,
+    },
+
+    fname: {
+        type: String,
 
     },
     lname: {
         type: String,
-        required: true,
-
     },
     phone:{
         type: String,
-        required: true,
-
     },
     IDNumber:{
         type: String,
-        required: true,
         unique:true
     },
     IDPhoto:{
         type:String,
-        required: true,
     },
     passport:{
         type:String,
-        required: true,
     },
     jobDescription:{
         type:String,
-        required: true,
-        default:"WEA Staff"
-    },
-    storeLocation:{
-        type:String,
-        required: true,
+
     },
 
 

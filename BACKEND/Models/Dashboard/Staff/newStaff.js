@@ -5,6 +5,10 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    userRef:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : "user"
+    },
     name: {
         type: String,
         required: true,

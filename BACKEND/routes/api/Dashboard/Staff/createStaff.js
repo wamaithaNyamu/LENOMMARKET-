@@ -34,34 +34,19 @@ router.post(
         if (!errors.isEmpty()) {
             return res.json(400).json({ errors: errors.array() });
         }
-        let staffID =uuidv4()
+
         const {
             admin,
             name,
             email,
             password,
-            store,
-
+            storeLocation,
            } = req.body;
-        let staff = await Staff.findOne({ email });
-        if (staff) {
-            res.status(400).json({ errors: [{ msg: "Staff already exists" }] });
-        }
 
-
-        staff = new Staff({
-            admin,
-            name,
-            staffID,
-            email,
-            store,
-        });
-        //encrypt password
-        const salt = await bcrypt.genSalt(10);
-        staff.password = await bcrypt.hash(password, salt);
-        await staff.save();
-
+        let staffID =uuidv4()
         let role = "staff"
+        const salt = await bcrypt.genSalt(10);
+
         let user = new User({
             name,
             email,
@@ -75,6 +60,24 @@ router.post(
 
         user.password = await bcrypt.hash(password, salt);
         await user.save();
+
+        let staff = await Staff.findOne({ email });
+        if (staff) {
+            res.status(400).json({ errors: [{ msg: "Staff already exists" }] });
+        }
+
+
+        staff = new Staff({
+
+
+            staffID,
+            admin,
+            email,
+            storeLocation,
+        });
+        //encrypt password
+        staff.password = await bcrypt.hash(password, salt);
+        await staff.save();
 
         //add notifcation
         const notification = {

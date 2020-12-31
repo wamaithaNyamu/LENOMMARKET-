@@ -1,9 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../../../Middleware/auth");
-const Staff = require("../../../../Models/Dashboard/Staff/Staff");
+const Staff = require("../../../../Models/Dashboard/Staff/staffProfile");
 const { check, validationResult } = require("express-validator/check");
-
 
 // @router  GET /:staff_id
 // @desc    Get single Staff by ID
@@ -13,36 +12,37 @@ router.get("/:staff_id", auth, async (req, res) => {
     try {
         const staff = await Staff.findOne({
             staffID: req.params.staff_id,
-        });
+        }).populate("user", ["_id"]);
         //if the Staff doesnt exists in the db
         if (!staff){
-
             return res.status(400).json({ msg: "Staff not found" });
         }
+
+        if(staff.user._id !== staff.userRef){
+            return res.status(400).json({ msg: "Unauthorised route" });
+        }
         // if Staff exists
-
         res.json(staff);
-
     } catch (e) {
         console.error(e.message);
         return res.status(400).json({ msg: "Something went wrong while fetching the Staff." });
     }
 });
 
+
 // @router  POST /:staff_id
 // @desc    Update a single Staff by ID from admin dashboard
 // @access  Private
 router.post(
     "/:staff_id",
-    [auth, [check("fname", "First Name is required").not().isEmpty()],
+    [auth,
+        [check("fname", "First Name is required").not().isEmpty()],
         [check("lname", "Surname is required").not().isEmpty()],
-
         [check("IDNumber", "ID number is required").not().isEmpty()],
         [check("IDPhoto", "ID photo is required").not().isEmpty()],
         [check("passport", "Passport photo number is required").not().isEmpty()],
         [check("jobDescription", "Job description is required").not().isEmpty()],
         [check("storeLocation", "Store location is required").not().isEmpty()],
-
     ],
     async (req, res) => {
         const errors = validationResult(req);
@@ -50,22 +50,17 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
         const {
-
             fname,
             lname,
-
             IDNumber,
             IDPhoto,
             passport,
             jobDescription,
             storeLocation
-
-
         } = req.body;
 
-
         const staffFields = {};
-        staffFields.staffID =uuidv4();
+
         if (fname) staffFields.fname = fname;
         if(lname) staffFields.lname = lname;
         if(IDNumber) staffFields.IDNumber = IDNumber;
@@ -74,24 +69,20 @@ router.post(
         if(jobDescription) staffFields.jobDescription = jobDescription;
         if(storeLocation) staffFields.storeLocation = storeLocation;
 
-
-
-
-
         try {
             //confirm its in the db
-            let Staff = await Staff.findOne({ staffID: req.params.staff_id });
-            if (Staff) {
+            let staff = await Staff.findOne({ staffID: req.params.staff_id });
+            if (staff) {
                 //    update profile
-                Staff = await Staff.findOneAndUpdate(
+                staff = await Staff.findOneAndUpdate(
                     {  staffID: req.params.staff_id  },
-                    { $set: StaffFields },
+                    { $set: staffFields },
                     { new: true }
                 );
 
-                console.log('updated Staff', Staff)
+                console.log('updated Staff', staff)
 
-                return res.json(Staff);
+                return res.json(staff);
             }
 
         } catch (e) {
