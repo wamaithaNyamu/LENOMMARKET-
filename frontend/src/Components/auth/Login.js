@@ -3,20 +3,55 @@ import { Link, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../actions/auth";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-import {
-    CardHeader,
-    CardFooter,
-    CardText,
-    FormGroup,
-    Form,
-    Input,
-    Row,
-    Col,
-    Button,
-} from "reactstrap";
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://material-ui.com/">
+                Your Website
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
+
+const useStyles = makeStyles((theme) => ({
+    paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
 
 const Login = ({ login, isAuthenticated }) => {
+    const classes = useStyles();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -35,86 +70,73 @@ const Login = ({ login, isAuthenticated }) => {
 
     return (
         <Fragment>
-            <Row className="login">
-                <div className="card card-user">
-                    <div className="card-body">
-                        <p className="card-text">
-                            <div className="author">
-                                <div className="block block-one"></div>
-                                <div className="block block-two"></div>
-                                <div className="block block-three"></div>
-                                <div className="block block-four"></div>
-                            </div>
-                        </p>
-                        <div className="card-description">
-                            <div className="container">
-                                <h2 className="form-title">Sign In</h2>
-                                <div className="signup-content">
-                                    <div className="signup-form  ">
-                                        <Form
-                                            onSubmit={(e) => onSubmit(e)}
-                                            className="register-form "
-                                            id="login-form"
-                                        >
-                                            <Col className="pr-md-1" md="12">
-                                                <CardHeader>
-                                                    <p> Email</p>
-                                                </CardHeader>
-                                                <FormGroup>
-                                                    <Input
-                                                        placeholder="email@gmail.com"
-                                                        type="text"
-                                                        name="email"
-                                                        value={email}
-                                                        onChange={(e) => onChange(e)}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Col className="pr-md-1" md="12">
-                                                <CardHeader>
-                                                    <p> Password</p>
-                                                </CardHeader>
-                                                <FormGroup>
-                                                    <Input
-                                                        placeholder="Password"
-                                                        type="password"
-                                                        name="password"
-                                                        minLength="6"
-                                                        value={password}
-                                                        onChange={(e) => onChange(e)}
-                                                    />
-                                                </FormGroup>
-                                            </Col>
-                                            <Row>
-                                                <CardFooter>
-                                                    <Button
-                                                        className="btn-fill"
-                                                        color="primary"
-                                                        type="submit"
-                                                        name="signin"
-                                                        className="form-submit"
-                                                        value="Login"
-                                                    >
-                                                        SIGN IN
-                                                    </Button>
-                                                </CardFooter>
-                                            </Row>
-                                        </Form>
-                                        <Row>
-                                            <CardText>
-                                                <Link to="/Register" className="pr-md-1">
-                                                    Don't have an account? Sign Up
-                                                </Link>
-                                            </CardText>
-                                        </Row>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <Container component="main" maxWidth="xs">
+                <CssBaseline />
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Sign in
+                    </Typography>
+                    <form className={classes.form} noValidate     onSubmit={(e) => onSubmit(e)}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            autoComplete="email"
+                            autoFocus
+                            value={email}
+                            onChange={(e) => onChange(e)}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="password"
+                            label="Password"
+                            type="password"
+                            id="password"
+                            autoComplete="current-password"
+                            value={password}
+                            onChange={(e) => onChange(e)}
+                        />
+                        <FormControlLabel
+                            control={<Checkbox value="remember" color="primary" />}
+                            label="Remember me"
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                        >
+                            Sign In
+                        </Button>
+                        <Grid container>
+                            <Grid item xs>
+                                <Link href="#" variant="body2">
+                                    Forgot password?
+                                </Link>
+                            </Grid>
+                            <Grid item>
+                                <Link to="/register" variant="body2">
+                                    {"Don't have an account? Sign Up"}
+                                </Link>
+                            </Grid>
+                        </Grid>
+                    </form>
                 </div>
-            </Row>
+                <Box mt={8}>
+                    <Copyright />
+                </Box>
+            </Container>
         </Fragment>
     );
 };

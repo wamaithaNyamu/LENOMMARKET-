@@ -7,11 +7,25 @@ const jwt = require("jsonwebtoken");
 const { check, validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
 const jwtSecret = process.env.jwtSecret
+const auth = require("../../../Middleware/auth")
 
 
 
+// @router  POST /login
+// @desc    Load user
+// @access Public
 
-// @router  POST api/auth
+router.get("/", auth, async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select("-password");
+        res.json(user);
+    } catch (e) {
+        console.error(e.message);
+        res.status(500).send("Server error");
+    }
+});
+
+// @router  POST /login
 // @desc    Login user
 // @access Public
 

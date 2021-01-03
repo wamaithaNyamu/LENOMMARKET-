@@ -1,4 +1,5 @@
 import { HashRouter } from "react-router-dom";
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./Components/Home/Home";
 import Alert from "./Components/Home/Alert";
@@ -25,6 +26,7 @@ const App = () => {
         <Provider store={store}>
             <HashRouter>
                 <Fragment>
+                    <CssBaseline />
                     <Navbar />
                     <section className="container">
                         <Alert />
