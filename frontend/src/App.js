@@ -1,7 +1,7 @@
 import { HashRouter } from "react-router-dom";
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Navbar from "./Components/Home/Home";
+import Home from "./Components/Home/Home";
 import Alert from "./Components/Home/Alert";
 import Register from "./Components/auth/Register";
 import Login from "./Components/auth/Login";
@@ -12,6 +12,26 @@ import React, { Fragment, useEffect } from "react";
 import { Provider } from "react-redux";
 import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
+import UserProfile from "./Components/User/Profile"
+
+const theme = createMuiTheme({
+
+
+    palette: {
+        primary: {
+            main: '#ffdd00',
+        },
+        secondary: {
+            main: '#ff0025',
+        },
+        white: {
+            main: '#ffffff',
+        },
+    },
+});
 
 
 if (localStorage.token) {
@@ -23,22 +43,26 @@ const App = () => {
         store.dispatch(loadUser());
     }, []);
     return (
+        <ThemeProvider theme={theme}>
         <Provider store={store}>
             <HashRouter>
                 <Fragment>
                     <CssBaseline />
-                    <Navbar />
+
                     <section className="container">
                         <Alert />
                         <Switch>
+                            <Route exact path="/" component={Home} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
+                            <PrivateRoute exact path="/dashboard" component={UserProfile} />
 
                         </Switch>
                     </section>
                 </Fragment>
             </HashRouter>
         </Provider>
+      </ThemeProvider>
     );
 };
 

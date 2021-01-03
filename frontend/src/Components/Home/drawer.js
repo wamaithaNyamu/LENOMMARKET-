@@ -1,34 +1,48 @@
 import React from 'react';
+
+import { fade, makeStyles } from '@material-ui/core/styles';
+
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
+import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded';
+import InfoRoundedIcon from '@material-ui/icons/InfoRounded';
+import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
+import FabCart from "./fabIcon"
+import Navbar from "./navbar"
+const useStyles = makeStyles((theme) => ({
 
-const useStyles = makeStyles({
-    list: {
-        width: 250,
+    root: {
+        flexGrow: 1,
+        '& > *': {
+            margin: theme.spacing(1),
+        },
     },
-    fullList: {
-        width: 'auto',
-    },
-});
 
-export default function SwipeableTemporaryDrawer() {
+}));
+
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            WEA INTL.
+            {' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
+export default function SearchAppBar() {
     const classes = useStyles();
     const [state, setState] = React.useState({
-        top: false,
         left: false,
-        bottom: false,
-        right: false,
-    });
 
+    });
     const toggleDrawer = (anchor, open) => (event) => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
@@ -38,6 +52,7 @@ export default function SwipeableTemporaryDrawer() {
     };
 
     const list = (anchor) => (
+
         <div
             className={clsx(classes.list, {
                 [classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -46,41 +61,52 @@ export default function SwipeableTemporaryDrawer() {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
+            <Divider />
+
+            <Typography component="h3" variant="h5" color="textSecondary" align="center">
+                CATEGORIES
+            </Typography>
+
+            <Divider />
+
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                {['Blades', 'Conduits', 'Fittings', 'Glues','Grattings','Pipes','Sinks','Tanks','Toilets',].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemIcon>{<CategoryRoundedIcon /> }</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
             <Divider />
+            <Typography component="h2" variant="h5" color="textSecondary" align="center">
+                COMPANY INFO
+            </Typography>
+            <Divider />
+
             <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
+                {['About US', 'Contact US', 'Delivery Policy','Payment Policy'].map((text, index) => (
                     <ListItem button key={text}>
-                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemIcon>{<InfoRoundedIcon /> }</ListItemIcon>
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
             </List>
+            <Divider />
+            <Box mt={8}>
+                <Copyright />
+            </Box>
+
         </div>
     );
 
     return (
-        <div>
-            {['left'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                    <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-                    <SwipeableDrawer
-                        anchor={anchor}
-                        open={state[anchor]}
-                        onClose={toggleDrawer(anchor, false)}
-                        onOpen={toggleDrawer(anchor, true)}
-                    >
-                        {list(anchor)}
-                    </SwipeableDrawer>
-                </React.Fragment>
-            ))}
-        </div>
+        <Container  fixed>
+            <div className={classes.root} >
+                <Navbar/>
+                <FabCart/>
+
+
+            </div>
+        </Container>
     );
 }
