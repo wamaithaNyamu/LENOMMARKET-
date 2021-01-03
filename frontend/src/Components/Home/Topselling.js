@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
 import Image from 'material-ui-image'
 
+
+
 const useStyles = makeStyles((theme) => ({
     gen: {
 
@@ -59,8 +61,9 @@ export default function MiddleDividers() {
                     </Grid>
                     <Divider/>
                     <Image
-                        src="http://loremflickr.com/300/200"
+                        src="https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60"
                     />
+                    <Divider/>
                     <Typography color="textSecondary" variant="body2">
                         Pinstriped cornflower blue cotton blouse takes you on a walk to the park or just down the
                         hall.
