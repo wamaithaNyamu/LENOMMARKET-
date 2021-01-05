@@ -24,6 +24,10 @@ import InfoRoundedIcon from "@material-ui/icons/InfoRounded";
 import Box from "@material-ui/core/Box";
 import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
+import Badge from "@material-ui/core/Badge";
+
+
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -224,6 +228,17 @@ export default function PrimarySearchAppBar() {
                 </IconButton>
                 <Link to="/Register"  color="textPrimary">Register/Login</Link>
             </MenuItem>
+            <MenuItem>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+
+                    <Link to="/cart"  color="textPrimary">
+
+                        <ShoppingCartSharpIcon/>
+                    </Link>
+
+                </IconButton>
+
+            </MenuItem>
 
         </Menu>
 
@@ -274,7 +289,20 @@ export default function PrimarySearchAppBar() {
                     <div className={classes.sectionDesktop}>
 
                         <MenuItem>
-                            <IconButton aria-label="show 4 new mails" color="inherit">
+                            <IconButton >
+
+                                <Link to="/cart"  color="textPrimary">
+
+                                    <Badge badgeContent={4} color="error">
+                                        <ShoppingCartSharpIcon />
+                                    </Badge>
+                                </Link>
+
+                            </IconButton>
+
+                        </MenuItem>
+                        <MenuItem>
+                            <IconButton >
 
                                 <LockOpenIcon />
 

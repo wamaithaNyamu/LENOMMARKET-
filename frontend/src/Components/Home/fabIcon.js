@@ -3,6 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fab from '@material-ui/core/Fab';
 import Badge from '@material-ui/core/Badge';
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
+import { Link, Redirect } from "react-router-dom";
+
+
 const useStyles = makeStyles((theme) => ({
 
 
@@ -21,12 +24,13 @@ export default function FloatingActionButtons() {
 
     return (
         <div className={classes.root}>
-
+            <Link to="/cart">
             <Fab color="primary" aria-label="Cart" className={classes.fab}>
             <Badge badgeContent={4} color="error">
                 <ShoppingCartSharpIcon />
             </Badge>
             </Fab>
+            </Link>
         </div>
     );
 }

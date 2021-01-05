@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2, 2),
         padding: theme.spacing(2,1,1,1),
         borderRadius: (0,0,0,10),
-
     }
 }));
 
@@ -60,14 +59,14 @@ export default function MiddleDividers() {
                 <Grid container alignItems="center" className={classes.top}>
                     <Grid item xs>
                         <Typography gutterBottom  variant="h6">
-                            Top Selling
+                            Featured
                         </Typography>
                     </Grid>
                     <Grid item>
                         <Typography gutterBottom variant="h6" >
                             <Link to="/catalog">
 
-                            View All &rarr;
+                                View All &rarr;
                             </Link>
                         </Typography>
                     </Grid>
@@ -92,7 +91,7 @@ export default function MiddleDividers() {
 
 
                                     <Grid item  sm={12}>
-                                        <Typography color="textSecondary" variant="body2">
+                                         <Typography color="textSecondary" variant="body2">
                                             Toilet Sink Melanin Description
                                         </Typography>
                                     </Grid>

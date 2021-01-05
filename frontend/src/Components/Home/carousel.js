@@ -36,12 +36,12 @@ const tutorialSteps = [
 const useStyles = makeStyles((theme) => ({
 
     img: {
-        height: '35%',
+        height: '100%',
 
         width: '100%',
         overflow: 'hidden',
 
-        borderRadius: (0,0,0,50),
+
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

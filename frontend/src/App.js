@@ -16,7 +16,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
 import UserProfile from "./Components/User/Profile"
-
+import Cart from "./Components/Home/cart"
+import Catalog from "./Components/Home/Catalog"
 const theme = createMuiTheme({
 
 
@@ -45,7 +46,7 @@ const App = () => {
     return (
         <ThemeProvider theme={theme}>
         <Provider store={store}>
-            <HashRouter>
+            <Router>
                 <Fragment>
                     <CssBaseline />
 
@@ -53,6 +54,8 @@ const App = () => {
                         <Alert />
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <Route exact path="/cart" component={Cart} />
+                            <Route exact path="/catalog" component={Catalog} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
                             <PrivateRoute exact path="/dashboard" component={UserProfile} />
@@ -60,7 +63,7 @@ const App = () => {
                         </Switch>
                     </section>
                 </Fragment>
-            </HashRouter>
+            </Router>
         </Provider>
       </ThemeProvider>
     );

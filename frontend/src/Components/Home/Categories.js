@@ -4,9 +4,15 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from "@material-ui/core/Typography";
 import Chip from '@material-ui/core/Chip';
 import FaceIcon from '@material-ui/icons/CategoryRounded';
+import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
+import EmojiEmotionsRoundedIcon from '@material-ui/icons/EmojiEmotionsRounded';
+import AccountBalanceWalletRoundedIcon from '@material-ui/icons/AccountBalanceWalletRounded';
+import HttpsRoundedIcon from '@material-ui/icons/HttpsRounded';
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 const useStyles = makeStyles((theme) => ({
     gen:{
-        padding:theme.spacing(2),
+        margin:theme.spacing(1),
     },
     cat: {
 
@@ -28,82 +34,50 @@ export default function ImageAvatars() {
         <div >
 
             <Typography variant="h6" align="center" className={classes.gen}>
-                Categories
+                Why Choose Us?
             </Typography>
-            <div className={classes.cat}>
-                <Chip
-                    icon={<FaceIcon />}
-                    label="ALL PRODUCTS"
-                    clickable
-                    color="primary"
 
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="BLADES"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="GLUES"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="GRATTINGS"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="PIPES"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="FITTINGS"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="SINKS"
-                    clickable
-                    color="primary"
-
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="TOILETS"
-                    clickable
-                    color="primary"
+            <Grid container spacing={1} className={classes.gen} >
 
 
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="TANKS"
-                    clickable
-                    color="primary"
+                <Grid item xs={6} sm={3}>
+                    <Chip
+                        icon={<LocalShippingRoundedIcon />}
+                        label="Countrywide Delivery"
 
-                />
-                <Chip
-                    icon={<FaceIcon />}
-                    label="CONDUITS"
-                    clickable
-                    color="primary"
+                        clickable
+                        color="primary"
 
-                />
+                    />
+                </Grid>
+                <Grid item xs={6} sm={3}>
+                    <Chip
+                        icon={<EmojiEmotionsRoundedIcon />}
+                        label="Aftersale Services"
+                        clickable
+                        color="primary"
 
-            </div>
+                    />
+                </Grid>
+                <Grid item xs={6} sm={3}>
+                    <Chip
+                        icon={<AccountBalanceWalletRoundedIcon />}
+                        label="Best Prices"
+                        clickable
+                        color="primary"
+
+                    />
+                </Grid>
+                <Grid item xs={6} sm={3}>
+                    <Chip
+                        icon={<HttpsRoundedIcon />}
+                        label="Secure Payments"
+                        clickable
+                        color="primary"
+
+                    />
+                </Grid>
+            </Grid>
         </div>
     );
 }

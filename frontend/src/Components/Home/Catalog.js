@@ -4,28 +4,23 @@ import Container from "@material-ui/core/Container";
 import Navbar from "./navbar"
 import AnnouncementBar from "./Announcement"
 import Categories from "./Categories"
-import Topselling from "./Topselling"
-import Featured from './Featured'
-import WhyUS from './whyUS'
 
 
-export default function Home() {
+
+export default function Cart() {
 
 
     return (
         <React.Fragment>
 
-        <AnnouncementBar/>
-        <Container >
-
-            <Navbar/>
-            <WhyUS/>
-            <Categories/>
-            <Topselling/>
-            <Featured/>
+            <AnnouncementBar/>
+            <Container >
+                <Navbar/>
 
 
-        </Container>
+
+
+            </Container>
         </React.Fragment>
     );
 }
