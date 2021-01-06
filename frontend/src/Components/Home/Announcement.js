@@ -20,11 +20,12 @@ export default function ButtonAppBar() {
 
     return (
         <div >
-            <AppBar position="static">
+            <AppBar position="static" elevation={0}>
                 <Toolbar className={classes.inputCenter}>
 
-                    <Typography variant="h6" align="center">
-                        This will be an announcement!
+                    <Typography variant="h8" align="center">
+                       Did you know you earn loyalty points every time you shop with us?
+
                     </Typography>
                 </Toolbar>
             </AppBar>

@@ -7,8 +7,8 @@ import Categories from "./Categories"
 import Topselling from "./Topselling"
 import Featured from './Featured'
 import WhyUS from './whyUS'
-
-
+import Tabs from "./tabs"
+import Fab from "./fabIcon"
 export default function Home() {
 
 
@@ -16,16 +16,10 @@ export default function Home() {
         <React.Fragment>
 
         <AnnouncementBar/>
-        <Container >
-
             <Navbar/>
-            <WhyUS/>
-            <Categories/>
-            <Topselling/>
-            <Featured/>
+            <Tabs/>
+            <Fab/>
 
-
-        </Container>
         </React.Fragment>
     );
 }

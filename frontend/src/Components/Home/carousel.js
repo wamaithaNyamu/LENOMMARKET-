@@ -36,8 +36,8 @@ const tutorialSteps = [
 const useStyles = makeStyles((theme) => ({
 
     img: {
-        height: '100%',
-
+        // height: '50%',
+        //
         width: '100%',
         overflow: 'hidden',
 

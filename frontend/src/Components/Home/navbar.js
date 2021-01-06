@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import clsx from "clsx";
 import Divider from "@material-ui/core/Divider";
@@ -26,8 +26,11 @@ import SwipeableDrawer from "@material-ui/core/SwipeableDrawer";
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
 import Badge from "@material-ui/core/Badge";
-
-
+import ShoppingBasketRoundedIcon from '@material-ui/icons/ShoppingBasketRounded';
+import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
+import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
+import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
+import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -154,33 +157,63 @@ export default function PrimarySearchAppBar() {
         >
             <Divider />
 
-            <Typography component="h3" variant="h5" color="textSecondary" align="center">
-                CATEGORIES
-            </Typography>
 
             <Divider />
 
             <List>
-                {['Blades', 'Conduits', 'Fittings', 'Glues','Grattings','Pipes','Sinks','Tanks','Toilets',].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{<CategoryRoundedIcon /> }</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem button>
+                    <ListItemIcon>
+                        <AccountCircleRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Profile" />
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <ShoppingBasketRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Cart" />
+                </ListItem>
+
+                <ListItem button>
+                    <ListItemIcon>
+                        <HistoryRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Orders" />
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <ExitToAppRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Logout" />
+                </ListItem>
             </List>
-            <Divider />
-            <Typography component="h2" variant="h5" color="textSecondary" align="center">
-                COMPANY INFO
+
+            <Typography component="h3" variant="h8" color="textSecondary" align="center">
+                Company Info
             </Typography>
             <Divider />
 
             <List>
-                {['About US', 'Contact US', 'Delivery Policy','Payment Policy'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>{<InfoRoundedIcon /> }</ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ListItem button>
+                    <ListItemIcon>
+                        <InfoRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="About Us" />
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <ContactPhoneRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Contact Us" />
+                </ListItem>
+
+                <ListItem button>
+                    <ListItemIcon>
+                        <LocationOnRoundedIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Store Locations" />
+                </ListItem>
+
             </List>
             <Divider />
             <Box mt={8}>
@@ -311,17 +344,7 @@ export default function PrimarySearchAppBar() {
                         </MenuItem>
 
                     </div>
-                    <div className={classes.sectionMobile}>
-                        <IconButton
-                            aria-label="show more"
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >
-                            <MoreIcon />
-                        </IconButton>
-                    </div>
+
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}

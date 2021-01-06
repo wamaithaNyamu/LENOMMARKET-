@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
-import Divider from '@material-ui/core/Divider';
 
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -16,10 +15,10 @@ import Typography from '@material-ui/core/Typography';
 import Carousel from "./carousel";
 import Navbar from "./navbar";
 import Image from 'material-ui-image'
+import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
 import Button from "@material-ui/core/Button";
-import Breadcrumbs from "@material-ui/core/Breadcrumbs";
-import CategoryRoundedIcon from '@material-ui/icons/CategoryRounded';
+
 
 const useStyles = makeStyles((theme) => ({
     gen: {
@@ -30,18 +29,9 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         flexDirection: 'row',
     },
-    bread:{
-        marginTop: theme.spacing(1),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'left',
-    },
-    cat:{
-        marginTop: theme.spacing(2),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'right',
-    },
+    // chip: {
+    //     margin: theme.spacing(0.5),
+    // },
     section1: {
         margin: theme.spacing(2, 2),
     },
@@ -73,89 +63,43 @@ export default function Cart() {
         <React.Fragment>
             <Navbar/>
             <Container >
-                <div className={classes.bread}>
-                    <Breadcrumbs aria-label="breadcrumb" align="left">
-                        <Link to="/" >
-                            Home
-                        </Link>
-
-                        <Link
-                            color="textPrimary"
-                            to="/login"
-
-                        >
-                            Catalog
-                        </Link>
-                    </Breadcrumbs>
-                </div>
 
                 <Grid container spacing={2}>
                     <Hidden mdDown>
                         <Grid item xs={12} md={3}>
-
-
-
-                            <div className={classes.cat}>
-                                <Typography>
-                                    Categories
-                                </Typography>
-                                <Divider/>
-                                <List >
+                            <Typography variant="h6">
+                                Categories
+                            </Typography>
+                            <div >
+                                <List>
                                     <List component="nav" aria-label="secondary mailbox folders">
                                         <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
                                             <ListItemText primary="Blades" />
                                         </ListItem>
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
+                                        <ListItem >
                                             <ListItemText primary="Conduits" />
                                         </ListItem>
 
                                         <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
                                             <ListItemText primary="Fittings" />
                                         </ListItem>
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
+                                        <ListItem >
                                             <ListItemText primary="Glues" />
                                         </ListItem>
 
                                         <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
                                             <ListItemText primary="Grattings" />
                                         </ListItem>
-                                        <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
+                                        <ListItem >
                                             <ListItemText primary="Pipes" />
                                         </ListItem>
                                         <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
                                             <ListItemText primary="Sinks" />
                                         </ListItem>
                                         <ListItem button>
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
                                             <ListItemText primary="Tanks" />
                                         </ListItem>
-                                        <ListItem button >
-                                            <ListItemIcon>
-                                                <CategoryRoundedIcon />
-                                            </ListItemIcon>
+                                        <ListItem >
                                             <ListItemText primary="Toilets" />
                                         </ListItem>
                                     </List>
@@ -243,7 +187,7 @@ export default function Cart() {
                                                     </Grid>
                                                     <Grid item  sm={12}>
                                                         <Button variant="contained" color="secondary"
-                                                        startIcon={<ShoppingCartSharpIcon/>}>
+                                                                startIcon={<ShoppingCartSharpIcon/>}>
                                                             Add to Cart
                                                         </Button>
                                                     </Grid>
