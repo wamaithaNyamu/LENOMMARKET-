@@ -5,7 +5,18 @@ const ProfileSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "user",
     },
-
+    firstName:{
+        type: String,
+        required: true,
+    },
+    secondName:{
+        type: String,
+        required: true,
+    },
+    phoneNumber:{
+        type: String,
+        required: true,
+    },
 
     country: {
         type: String,
@@ -19,6 +30,7 @@ const ProfileSchema = new mongoose.Schema({
 
     areaDescription: {
         type: String,
+        required: true,
     },
 
     businessName: {
@@ -30,6 +42,11 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    promotions:{
+        type: String,
+        required: true,
+        default:"yes"
+    }
 
 
 

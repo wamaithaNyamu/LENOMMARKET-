@@ -35,7 +35,21 @@ router.post(
     [auth,
 
 
-            [check("businessName", "Token is required").not().isEmpty()]
+            [check("firstName", "First name is required").not().isEmpty()],
+
+        [check("secondName", "Second name is required").not().isEmpty()],
+
+        [check("phoneNumber", "Phone number is required").not().isEmpty()],
+
+        [check("county", "County name is required").not().isEmpty()],
+
+        [check("areaDescription", "Area description is required").not().isEmpty()],
+
+        [check("businessName", "Business name is required").not().isEmpty()],
+
+        [check("howYouHeardUs", "How you heard about us is required").not().isEmpty()],
+
+        [check("promotions", "Promotions is required").not().isEmpty()],
 
     ],
     async (req, res) => {
@@ -44,28 +58,32 @@ router.post(
             return res.status(400).json({ errors: errors.array() });
         }
         const {
+            firstName,
+            secondName,
+            phoneNumber,
             country,
             county,
             areaDescription,
             businessName,
             howYouHeardUs,
+            promotions,
 
         } = req.body;
 
         //build profile object
         const profileFields = {};
-        const hashedTotext = function (hash) {
-            const enc = encrypt(hash);
-            return enc;
-        };
 
         //create and update profile routes
         profileFields.user = req.user.id;
+        if (firstName) profileFields.firstName = firstName;
+        if (secondName) profileFields.secondName = secondName;
+        if (phoneNumber) profileFields.phoneNumber =phoneNumber;
         if (country) profileFields.country = country;
         if (county) profileFields.county = county;
-        if (areaDescription) profileFields.areaDescription = hashedTotext(areaDescription);
-        if (businessName) profileFields.businessName = hashedTotext(businessName);
+        if (areaDescription) profileFields.areaDescription = areaDescription;
+        if (businessName) profileFields.businessName =businessName;
         if (howYouHeardUs) profileFields.howYouHeardUs = howYouHeardUs;
+        if (promotions) profileFields.promotions = promotions;
 
 
         try {

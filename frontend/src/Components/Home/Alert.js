@@ -6,10 +6,11 @@ import AlertUI from '@material-ui/lab/Alert';
 
 
 const Alert = ({ alerts }) =>
+
     alerts !== null &&
     alerts.length > 0 &&
     alerts.map((alert) => (
-        <Container component="main" maxWidth="sm">
+        <Container component="main" maxWidth="sm" >
 
         <div key={alert.id} >
             <AlertUI variant="filled" severity={alert.alertType}>

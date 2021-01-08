@@ -25,7 +25,7 @@ const Dashboard = ({
                 </Fragment>
             ) : (
                 <Fragment>
-                   Create profile
+
                     <CreateProfile/>
                 </Fragment>
             )}
