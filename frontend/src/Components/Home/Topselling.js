@@ -57,21 +57,7 @@ export default function MiddleDividers() {
         <div >
 
             <Grid container  className={classes.gen} >
-                <Grid container alignItems="center" className={classes.top}>
-                    <Grid item xs>
-                        <Typography gutterBottom  variant="h6">
-                            Top Selling
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Typography gutterBottom variant="h6" >
-                            <Link to="/catalog">
 
-                            View All &rarr;
-                            </Link>
-                        </Typography>
-                    </Grid>
-                </Grid>
                 <Grid item xs={6} sm={3}>
                     <div className={classes.card}>
                         <div className={classes.section1}>

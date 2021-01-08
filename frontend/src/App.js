@@ -15,9 +15,10 @@ import setAuthToken from "./utils/setAuthToken";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 
-import UserProfile from "./Components/User/Profile"
+import Dashboard from "./Components/Home/Dashboard"
 import Cart from "./Components/Home/cart"
 import Catalog from "./Components/Home/Catalog"
+import Announcement from "./Components/Home/Announcement"
 const theme = createMuiTheme({
 
 
@@ -49,6 +50,7 @@ const App = () => {
             <Router>
                 <Fragment>
                     <CssBaseline />
+                    <Announcement/>
 
                     <section className="container">
                         <Alert />
@@ -58,7 +60,7 @@ const App = () => {
                             <Route exact path="/catalog" component={Catalog} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
-                            <PrivateRoute exact path="/dashboard" component={UserProfile} />
+                            <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
                         </Switch>
                     </section>

@@ -1,75 +1,28 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
-import tileData from './tileData';
+import React from "react";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
-    gridList: {
-        flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-        transform: 'translateZ(0)',
-    },
-    title: {
-        color: theme.palette.primary.light,
-    },
-    titleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-    },
-}));
+class GroupedButtons extends React.Component {
+    state = { counter: 1 };
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';
- * [etc...]
- *
- * const tileData = [
- *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-export default function SingleLineGridList() {
-    const classes = useStyles();
+    handleIncrement = () => {
+        this.setState(state => ({ counter: state.counter + 1 }));
+    };
 
-    return (
-        <div className={classes.root}>
-            <GridList className={classes.gridList} cols={2.5}>
-                {tileData.map((tile) => (
-                    <GridListTile key={tile.img}>
-                        <img src={tile.img} alt={tile.title} />
-                        <GridListTileBar
-                            title={tile.title}
-                            classes={{
-                                root: classes.titleBar,
-                                title: classes.title,
-                            }}
-                            actionIcon={
-                                <IconButton aria-label={`star ${tile.title}`}>
-                                    <StarBorderIcon className={classes.title} />
-                                </IconButton>
-                            }
-                        />
-                    </GridListTile>
-                ))}
-            </GridList>
-        </div>
-    );
+    handleDecrement = () => {
+        this.setState(state => ({ counter: state.counter - 1 }));
+    };
+    render() {
+        const displayCounter = this.state.counter > 0;
+
+        return (
+            <ButtonGroup size="small" aria-label="small outlined button group">
+                <Button onClick={this.handleIncrement}>+</Button>
+                {displayCounter && <Button >{this.state.counter}</Button>}
+                {displayCounter && <Button onClick={this.handleDecrement}>-</Button>}
+            </ButtonGroup>
+        );
+    }
 }
+
+export default GroupedButtons;

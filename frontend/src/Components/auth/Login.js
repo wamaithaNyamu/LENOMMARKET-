@@ -17,7 +17,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 
-
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">

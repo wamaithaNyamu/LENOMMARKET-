@@ -7,6 +7,11 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Container from "@material-ui/core/Container";
+import Grid from "@material-ui/core/Grid";
+import Image from "material-ui-image";
+import Divider from "@material-ui/core/Divider";
+import Chip from "@material-ui/core/Chip";
+import Product from "./productPage"
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -47,8 +52,37 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         backgroundColor: theme.palette.background.paper,
     },
-}));
 
+
+    gen: {
+        backgroundColor: theme.palette.background.paper,
+
+
+    },
+    // chip: {
+    //     margin: theme.spacing(0.5),
+    // },
+    section1: {
+        margin: theme.spacing(2, 2),
+    },
+    section2: {
+        margin: theme.spacing(1),
+    },
+    section3: {
+        margin: theme.spacing(2, 1, 1),
+    },
+    card:{
+        width: '100%',
+        backgroundColor: theme.palette.background.paper,
+        margin: theme.spacing(2, 2),
+    },
+    top:{
+        margin: theme.spacing(2, 2),
+        padding: theme.spacing(2,1,1,1),
+        borderRadius: (0,0,0,10),
+
+    }
+}));
 export default function ScrollableTabsButtonAuto() {
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -71,7 +105,6 @@ export default function ScrollableTabsButtonAuto() {
                 >
                     <Tab label="Brass Fittings" {...a11yProps(0)} />
                     <Tab label="GI Fittings" {...a11yProps(1)} />
-                    <Tab label="Gutter Fittings" {...a11yProps(2)} />
                     <Tab label="PPR Fittings" {...a11yProps(3)} />
                     <Tab label="Waste Fittings" {...a11yProps(4)} />
                      <Tab label="Pumps and Fittings" {...a11yProps(5)} />
@@ -84,21 +117,21 @@ export default function ScrollableTabsButtonAuto() {
                     <Tab label="Roto Tanks" {...a11yProps(11)} />
 
                     <Tab label="Sinks and Toilets" {...a11yProps(12)} />
-                    <Tab label="Conduits" {...a11yProps(13)} />
+                    {/*others */}
                     <Tab label="Blades" {...a11yProps(14)} />
                     <Tab label="Glues" {...a11yProps(15)} />
-                    <Tab label="Main Hole Covers" {...a11yProps(16)} />
                     <Tab label="Grattings, Clamps, Clips" {...a11yProps(17)} />
 
+                    <Tab label="Main Hole Covers" {...a11yProps(16)} />
                     <Tab label="PPR Pipes" {...a11yProps(18)} />
                     <Tab label="Pressure Pipes" {...a11yProps(19)} />
                     <Tab label="Waste Pipes" {...a11yProps(20)} />
                     <Tab label="Pressure Pipes" {...a11yProps(21)} />
                     <Tab label="GI Pipe" {...a11yProps(22)} />
-                    <Tab label="Gutter Pipes" {...a11yProps(23)} />
+                    <Tab label="Gutter Pipes and Fittings" {...a11yProps(23)} />
                     <Tab label="Hose Pipes" {...a11yProps(24)} />
-                    <Tab label="PPR Pipes" {...a11yProps(25)} />
 
+                    <Tab label="Conduits" {...a11yProps(13)} />
 
 
 
@@ -110,7 +143,32 @@ export default function ScrollableTabsButtonAuto() {
 
 
             <TabPanel value={value} index={0}>
-                Item One
+                <Grid container   spacing={3} className={classes.gen} >
+
+                    <Grid item xs={12} sm={4}>
+                        <Product/>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                        <Product/>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+
+                            <Product/>
+                        </Grid>
+                    <Grid item xs={12} sm={4}>
+
+                        <Product/>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+
+                        <Product/>
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+
+                        <Product/>
+                    </Grid>
+
+                </Grid>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two

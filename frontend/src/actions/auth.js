@@ -13,6 +13,8 @@ import {
 } from "./types";
 
 import setAuthToken from "../utils/setAuthToken";
+
+
 //load user
 export const loadUser = () => async (dispatch) => {
     if (localStorage.token) {

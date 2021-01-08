@@ -1,107 +1,154 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import StepContent from '@material-ui/core/StepContent';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
+import React, { useState, Fragment } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createProfile } from "../../actions/profile";
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-    },
-    button: {
-        marginTop: theme.spacing(1),
-        marginRight: theme.spacing(1),
-    },
-    actionsContainer: {
-        marginBottom: theme.spacing(2),
-    },
-    resetContainer: {
-        padding: theme.spacing(3),
-    },
-}));
+// reactstrap components
+import {
+    Button,
+    Card,
+    CardHeader,
+    CardBody,
+    CardFooter,
+    CardText,
+    FormGroup,
+    Form,
+    Input,
+    Row,
+    Col,
+} from "reactstrap";
 
-function getSteps() {
-    return ['Select campaign settings', 'Create an ad group', 'Create an ad'];
-}
+const CreateProfile = ({ createProfile, history }) => {
+    const [formData, setFormData] = useState({
 
-function getStepContent(step) {
-    switch (step) {
-        case 0:
-            return `For each ad campaign that you create, you can control how much
-              you're willing to spend on clicks and conversions, which networks
-              and geographical locations you want your ads to show on, and more.`;
-        case 1:
-            return 'An ad group contains one or more ads which target a shared set of keywords.';
-        case 2:
-            return `Try out different ad text to see what brings in the most customers,
-              and learn how to enhance your ads using features like ad extensions.
-              If you run into any problems with your ads, find out how to tell if
-              they're running and how to resolve approval issues.`;
-        default:
-            return 'Unknown step';
-    }
-}
+        county: "",
+        areaDescription: "",
+        businessName: "",
+        howYouHeardUs: "",
 
-export default function VerticalLinearStepper() {
-    const classes = useStyles();
-    const [activeStep, setActiveStep] = React.useState(0);
-    const steps = getSteps();
+    });
 
-    const handleNext = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    const {
+
+        county,
+        areaDescription,
+        businessName,
+        howYouHeardUs,
+
+    } = formData;
+
+    const onChange = (e) =>
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        createProfile(formData, history);
     };
-
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
-
     return (
-        <div className={classes.root}>
-            <Stepper activeStep={activeStep} orientation="vertical">
-                {steps.map((label, index) => (
-                    <Step key={label}>
-                        <StepLabel>{label}</StepLabel>
-                        <StepContent>
-                            <Typography>{getStepContent(index)}</Typography>
-                            <div className={classes.actionsContainer}>
-                                <div>
-                                    <Button
-                                        disabled={activeStep === 0}
-                                        onClick={handleBack}
-                                        className={classes.button}
-                                    >
-                                        Back
-                                    </Button>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        onClick={handleNext}
-                                        className={classes.button}
-                                    >
-                                        {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
-                                    </Button>
-                                </div>
-                            </div>
-                        </StepContent>
-                    </Step>
-                ))}
-            </Stepper>
-            {activeStep === steps.length && (
-                <Paper square elevation={0} className={classes.resetContainer}>
-                    <Typography>All steps completed - you&apos;re finished</Typography>
-                    <Button onClick={handleReset} className={classes.button}>
-                        Reset
-                    </Button>
-                </Paper>
-            )}
-        </div>
+        <Fragment
+            className="content"
+            style={{
+                height: "90vh",
+            }}
+        >
+            <Row>
+                <h2>Create your profile to proceed</h2>
+            </Row>
+            <Row>
+                <Col md="12">
+                    <Card>
+                        <CardHeader>
+                            <h5 className="title">Create Profile</h5>
+                        </CardHeader>
+                        <CardBody>
+                            <Form onSubmit={(e) => onSubmit(e)}>
+                                <Row>
+                                    <Col className="pr-md-1" md="12">
+                                        <CardHeader>
+                                            <p>County your business is located :</p>
+                                        </CardHeader>
+                                        <FormGroup>
+                                            <Input
+                                                placeholder="First Name"
+                                                type="text"
+                                                name="country"
+                                                value={county}
+                                                onChange={(e) => onChange(e)}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+
+                                </Row>
+                                <Row>
+                                    <Col className="pr-md-1" md="12">
+                                        <CardHeader>
+                                            <p>Describe the area within the county :</p>
+                                        </CardHeader>
+                                        <FormGroup>
+                                            <Input
+                                                placeholder="Binary Token"
+                                                type="text"
+                                                name="areaDescription"
+                                                value={areaDescription}
+                                                onChange={(e) => onChange(e)}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                    <Col className="pr-md-1" md="12">
+                                        <CardHeader>
+                                            <p>What is your business name ?</p>
+                                        </CardHeader>
+                                        <FormGroup>
+                                            <Input
+                                                placeholder="MT5 Login ID"
+                                                type="text"
+                                                name="businessName"
+                                                value={businessName}
+                                                onChange={(e) => onChange(e)}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="pr-md-1" md="12">
+                                        <CardHeader>
+                                            <p>How did you hear about us ?</p>
+                                        </CardHeader>
+                                        <FormGroup>
+                                            <Input
+                                                placeholder="MT5 Login Password"
+                                                type="text"
+                                                name="howYouHeardUs"
+                                                value={howYouHeardUs}
+                                                onChange={(e) => onChange(e)}
+                                            />
+                                        </FormGroup>
+                                    </Col>
+
+
+                                </Row>
+                                <Row>
+                                    <CardFooter>
+                                        <Button className="btn-fill" color="primary" type="submit">
+                                            Submit
+                                        </Button>
+                                    </CardFooter>
+                                </Row>
+                            </Form>
+                        </CardBody>
+                    </Card>
+                </Col>
+            </Row>
+        </Fragment>
     );
-}
+};
+
+CreateProfile.propTypes = {
+    createProfile: PropTypes.func.isRequired,
+};
+
+export default connect(null, { createProfile })(withRouter(CreateProfile));

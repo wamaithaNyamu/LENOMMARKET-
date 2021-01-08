@@ -22,7 +22,7 @@ app.use("/singleProduct", require("./BACKEND/routes/api/Products/singleProduct")
 app.use("/createAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/createAnnouncement"));
 app.use("/singleAnnouncement", require("./BACKEND/routes/api/Dashboard/Announcements/singleAnnouncement"));
 app.use("/newStaff", require("./BACKEND/routes/api/Dashboard/Staff/createStaff"));
-
+app.use("/profile", require("./BACKEND/routes/Profile/profile"))
 
 
 const PORT = process.env.PORT || 8080;

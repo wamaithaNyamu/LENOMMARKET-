@@ -15,7 +15,6 @@ export default function Home() {
     return (
         <React.Fragment>
 
-        <AnnouncementBar/>
             <Navbar/>
             <Tabs/>
             <Fab/>

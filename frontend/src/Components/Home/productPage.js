@@ -1,479 +1,99 @@
 import React from 'react';
-import { Link, Redirect } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ShoppingCartSharpIcon from '@material-ui/icons/ShoppingCartSharp';
-
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
-import Hidden from '@material-ui/core/Hidden';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Carousel from "./carousel";
-import Navbar from "./navbar";
-import Image from 'material-ui-image'
+import ButtonBase from '@material-ui/core/ButtonBase';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import Chip from '@material-ui/core/Chip';
+import TextField from '@material-ui/core/TextField';
+import GroupedButtons from "./Line"
 import Divider from "@material-ui/core/Divider";
-import Chip from "@material-ui/core/Chip";
-import Button from "@material-ui/core/Button";
-
 
 const useStyles = makeStyles((theme) => ({
-    gen: {
-
+    root: {
+        flexGrow: 1,
+    },
+    paper: {
+        padding: theme.spacing(2),
+        margin: 'auto',
+        maxWidth: 500,
+    },
+    image: {
+        width: 128,
+        height: 128,
+    },
+    img: {
+        margin: 'auto',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        flexDirection: 'row',
+        maxWidth: '100%',
+        maxHeight: '100%',
     },
-    // chip: {
-    //     margin: theme.spacing(0.5),
-    // },
-    section1: {
-        margin: theme.spacing(2, 2),
-    },
-    section2: {
+    formControl: {
         margin: theme.spacing(1),
+        minWidth: 120,
     },
-    section3: {
-        margin: theme.spacing(2, 1, 1),
+    selectEmpty: {
+        marginTop: theme.spacing(2),
     },
-    card:{
-        width: '100%',
-        backgroundColor: theme.palette.background.paper,
-        margin: theme.spacing(2, 2),
-    },
-    top:{
-        margin: theme.spacing(2, 2),
-        padding: theme.spacing(2,1,1,1),
-        borderRadius: (0,0,0,10),
-
-    },
-
 }));
 
-export default function Cart() {
+export default function ComplexGrid() {
     const classes = useStyles();
-
-
+    const [size, setSize] = React.useState('');
+    const handleChange = (event) => {
+        setSize(event.target.value);
+    };
     return (
-        <React.Fragment>
-            <Navbar/>
-            <Container >
-
+        <div className={classes.root}>
+            <Paper className={classes.paper}>
                 <Grid container spacing={2}>
-                    <Hidden mdDown>
-                        <Grid item xs={12} md={3}>
-                            <Typography variant="h6">
-                                Categories
-                            </Typography>
-                            <div >
-                                <List>
-                                    <List component="nav" aria-label="secondary mailbox folders">
-                                        <ListItem button>
-                                            <ListItemText primary="Blades" />
-                                        </ListItem>
-                                        <ListItem >
-                                            <ListItemText primary="Conduits" />
-                                        </ListItem>
+                    <Grid item>
+                        <ButtonBase className={classes.image}>
+                            <img className={classes.img} alt="complex" src="https://kitchensinksandtaps.co.uk/content/images/thumbs/0001135_oakland-ol9852-stainless-steel-sink.jpeg" />
+                        </ButtonBase>
+                    </Grid>
+                    <Grid item xs={12} sm container>
+                        <Grid item xs container direction="column" spacing={2}>
+                            <Grid item xs>
+                                <Typography gutterBottom variant="body2">
+                                    Standard license
+                                </Typography>
+                                <Typography variant="body2" gutterBottom>
+                                    Full resolution 1920x1080 • JPEG
+                                </Typography>
+                                <Typography variant="body2" color="textSecondary">
+                                    ID: 1030114
+                                </Typography>
 
-                                        <ListItem button>
-                                            <ListItemText primary="Fittings" />
-                                        </ListItem>
-                                        <ListItem >
-                                            <ListItemText primary="Glues" />
-                                        </ListItem>
+                                <Typography variant="body2" color="textSecondary">
+                                    <Chip
+                                    label="300 ml"
+                                    />
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <GroupedButtons/>
+                            </Grid>
 
-                                        <ListItem button>
-                                            <ListItemText primary="Grattings" />
-                                        </ListItem>
-                                        <ListItem >
-                                            <ListItemText primary="Pipes" />
-                                        </ListItem>
-                                        <ListItem button>
-                                            <ListItemText primary="Sinks" />
-                                        </ListItem>
-                                        <ListItem button>
-                                            <ListItemText primary="Tanks" />
-                                        </ListItem>
-                                        <ListItem >
-                                            <ListItemText primary="Toilets" />
-                                        </ListItem>
-                                    </List>
-                                </List>
-                            </div>
+                            <Grid item>
+                                <Typography variant="body2" color="secondary" style={{ cursor: 'pointer' }}>
+                                    Add To Cart
+                                </Typography>
+
+                            </Grid>
+
                         </Grid>
-                    </Hidden>
-                    <Grid item xs={12} md={9}>
-
-                        <div >
-
-                            <Grid container  className={classes.gen} >
-
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                            </Grid>
-
-                        </div>
-
-                        <div >
-
-                            <Grid container  className={classes.gen} >
-
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <div className={classes.card}>
-                                        <div className={classes.section1}>
-                                            <Grid container alignItems="center">
-                                                <Grid item xs>
-                                                    <Image
-                                                        src="https://images-na.ssl-images-amazon.com/images/I/51keTVMdarL._SL1280_.jpg"/>
-                                                </Grid>
-
-                                            </Grid>
-                                        </div>
-                                        <Divider variant="middle" />
-                                        <div className={classes.section2}>
-
-                                            <div>
-
-                                                <Grid container spacing={1} >
-
-
-                                                    <Grid item  sm={12}>
-                                                        <Typography color="textSecondary" variant="body2">
-                                                            Toilet Sink Melanin Description
-                                                        </Typography>
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Chip className={classes.chip}
-                                                              color="primary"
-                                                              label="KSH 350" />
-                                                    </Grid>
-                                                    <Grid item  sm={12}>
-                                                        <Button variant="contained" color="secondary"
-                                                                startIcon={<ShoppingCartSharpIcon/>}>
-                                                            Add to Cart
-                                                        </Button>
-                                                    </Grid>
-
-                                                </Grid>
-
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </Grid>
-                            </Grid>
-
-                        </div>
+                        <Grid item>
+                            <Typography color="secondary" variant="subtitle1">KSH. 1900</Typography>
+                        </Grid>
                     </Grid>
                 </Grid>
-
-
-
-            </Container>
-        </React.Fragment>
+            </Paper>
+        </div>
     );
 }
