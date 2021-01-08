@@ -46,7 +46,7 @@ router.post(
                 date,
                 role
             });
-            console.log(user)
+
 
 
             //encrypt password

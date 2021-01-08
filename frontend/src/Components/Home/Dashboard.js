@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../Home/spinner";
 import CreateProfile from "../User/Profile";
-
+import CustomerDashboard from "./SignedIN/CustomerDashboard"
 
 const Dashboard = ({
                        getCurrentProfile,
@@ -21,12 +21,13 @@ const Dashboard = ({
         <Fragment>
             {profile !== null ? (
                 <Fragment>
-                 Profile not null
+                 <CustomerDashboard/>
                 </Fragment>
             ) : (
                 <Fragment>
+                    {user.role ==='customer' ? (<CreateProfile/>) : (<Fragment> <CustomerDashboard/></Fragment>)}
 
-                    <CreateProfile/>
+
                 </Fragment>
             )}
         </Fragment>
