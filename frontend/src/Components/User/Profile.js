@@ -156,11 +156,11 @@ const CreateProfile = ({ createProfile, history }) => {
                                 <FormControl variant="outlined" className={classes.formControl}>
                                     <InputLabel id="countyid">County your business is located *</InputLabel>
                                     <Select
-                                        labelId="countyid"
+                                        labelId="countyidlabel"
                                         id="countyid"
                                         value={county}
                                         onChange={(e) => onChange(e)}
-                                        label="county"
+                                        label="ounty your business is located *"
                                         inputProps={{
                                             name: 'county',
                                             id: 'countyid',

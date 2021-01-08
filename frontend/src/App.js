@@ -19,12 +19,15 @@ import Dashboard from "./Components/Home/Dashboard"
 import Cart from "./Components/Home/cart"
 import Catalog from "./Components/Home/Catalog"
 import Announcement from "./Components/Home/Announcement"
+import Aboutus from "./Components/Home/aboutus"
+
+
 const theme = createMuiTheme({
 
 
     palette: {
         primary: {
-            main: '#ffdd00',
+            main: '#ff0015',
         },
         secondary: {
             main: '#ff0025',
@@ -60,6 +63,7 @@ const App = () => {
                             <Route exact path="/catalog" component={Catalog} />
                             <Route exact path="/login" component={Login} />
                             <Route exact path="/register" component={Register} />
+                            <Route exact path="/about" component={Aboutus} />
                             <PrivateRoute exact path="/dashboard" component={Dashboard} />
 
                         </Switch>

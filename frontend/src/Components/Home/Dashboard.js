@@ -1,11 +1,13 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link, Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../Home/spinner";
 import CreateProfile from "../User/Profile";
 import CustomerDashboard from "./SignedIN/CustomerDashboard"
-
+import Login from "../auth/Login"
 const Dashboard = ({
                        getCurrentProfile,
                        auth: { user },
@@ -15,7 +17,7 @@ const Dashboard = ({
         getCurrentProfile();
     }, []);
 
-    return loading && profile === null ? (
+    return user !== null ? (loading && profile === null ? (
         <Spinner />
     ) : (
         <Fragment>
@@ -31,7 +33,11 @@ const Dashboard = ({
                 </Fragment>
             )}
         </Fragment>
-    );
+    )
+    ) : (<Fragment>
+        <Login/>
+
+    </Fragment>)
 };
 
 Dashboard.propTypes = {
