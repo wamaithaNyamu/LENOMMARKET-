@@ -14,16 +14,15 @@ import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-
 import Dashboard from "./Components/Home/Dashboard"
 import Cart from "./Components/Home/cart"
 import Catalog from "./Components/Home/Catalog"
 import Announcement from "./Components/Home/Announcement"
 import Aboutus from "./Components/Home/aboutus"
-
+import StoreIcon from '@material-ui/icons/Store';
 
 const theme = createMuiTheme({
-
+    // shadows: ["none"],
 
     palette: {
         primary: {
@@ -53,7 +52,7 @@ const App = () => {
             <Router>
                 <Fragment>
                     <CssBaseline />
-                    <Announcement/>
+
 
                     <section className="container">
                         <Alert />

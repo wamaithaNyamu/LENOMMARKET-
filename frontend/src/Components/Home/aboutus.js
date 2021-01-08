@@ -85,7 +85,7 @@ export default function Cart() {
             <Container >
                 <div className={classes.bread}>
 
-                        <Link to="/" >
+                        <Link to="/" style={{ textDecoration: 'none' }} >
                             Back Home
                         </Link>
 

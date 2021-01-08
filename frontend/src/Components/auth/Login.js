@@ -21,7 +21,7 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" to="/">
+            <Link color="inherit" to="/" style={{ textDecoration: 'none' }}>
                 WEA INTL.
             </Link>{' '}
             {new Date().getFullYear()}
@@ -148,7 +148,7 @@ const Login = ({ login, isAuthenticated }) => {
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link to="/register" variant="body2">
+                                <Link to="/register" style={{ textDecoration: 'none' }} variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

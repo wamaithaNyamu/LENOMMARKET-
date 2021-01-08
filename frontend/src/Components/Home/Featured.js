@@ -64,7 +64,7 @@ export default function MiddleDividers() {
                     </Grid>
                     <Grid item>
                         <Typography gutterBottom variant="h6" >
-                            <Link to="/catalog">
+                            <Link to="/catalog" style={{ textDecoration: 'none' }}>
 
                                 View All &rarr;
                             </Link>

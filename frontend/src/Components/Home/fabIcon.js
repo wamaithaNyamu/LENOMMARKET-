@@ -24,7 +24,7 @@ export default function FloatingActionButtons() {
 
     return (
         <div className={classes.root}>
-            <Link to="/cart">
+            <Link to="/cart" style={{ textDecoration: 'none' }}>
             <Fab color="primary" aria-label="Cart" className={classes.fab}>
             <Badge badgeContent={4} color="error">
                 <ShoppingCartSharpIcon />

@@ -8,6 +8,10 @@ import Spinner from "../Home/spinner";
 import CreateProfile from "../User/Profile";
 import CustomerDashboard from "./SignedIN/CustomerDashboard"
 import Login from "../auth/Login"
+
+
+
+
 const Dashboard = ({
                        getCurrentProfile,
                        auth: { user },

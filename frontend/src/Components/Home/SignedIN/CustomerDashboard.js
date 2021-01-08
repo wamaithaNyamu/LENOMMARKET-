@@ -1,181 +1,161 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { logout } from "../../../actions/auth"
+import { Link  } from 'react-router-dom'
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
-import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import Container from '@material-ui/core/Container';
+import StoreIcon from '@material-ui/icons/Store';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import { logout } from "../../../actions/auth"
-
-const drawerWidth = 240;
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
+import logoutIcon from "../../../img/logout.svg"
+import shopIcon from "../../../img/shop.svg"
+import orderIcon from "../../../img/order.svg"
+import profileIcon from "../../../img/profile.svg"
+import Image from 'material-ui-image'
+import CardMedia from '@material-ui/core/CardMedia';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-
-    },
-    appBar: {
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-    },
-    appBarShift: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
-        transition: theme.transitions.create(['margin', 'width'], {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    hide: {
-        display: 'none',
-    },
-    drawer: {
-        width: drawerWidth,
-        flexShrink: 0,
-    },
-    drawerPaper: {
-        width: drawerWidth,
-    },
-    drawerHeader: {
+    b:{
         display: 'flex',
         alignItems: 'center',
-        padding: theme.spacing(0, 1),
-        // necessary for content to be below app bar
-        ...theme.mixins.toolbar,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        margin: theme.spacing(2, 2,5,1),
+        padding:theme.spacing(2, 2,5,1),
     },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
-        marginLeft: -drawerWidth,
+    c:{
+
+        paddingTop:100,
+        maxWidth: '400px',
+
+
+
     },
-    contentShift: {
-        transition: theme.transitions.create('margin', {
-            easing: theme.transitions.easing.easeOut,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
-        marginLeft: 0,
+    root: {
+
+        margin: theme.spacing(2, 2),
+        padding:theme.spacing(2, 2),
     },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+
+    pos: {
+
+    },
+    media:{
+
+        margin: theme.spacing(2, 2),
+        padding:theme.spacing(2, 2),
+
+    }
 }));
 
 const Dashboard = ({auth: { user, isAuthenticated, loading }, logout}) => {
     const classes = useStyles();
-    const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
-
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
     return (
-        <div className={classes.root} elevation={0}>
-            <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open,
-                })}
-            >
-                <Toolbar >
-                    <IconButton
+        <div className={classes.b}>
 
-                        aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, open && classes.hide)}
 
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h10" noWrap>
-                        Good Morning
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link to="/">
-                            <ListItem button onClick={logout}>
-                            <ListItemIcon><ExitToAppIcon /></ListItemIcon>
-                            <ListItemText primary="Logout" />
-                        </ListItem>
+        <Container className={classes.c} >
+            <Typography variant="h6" component="p" >
+                Hello {user.name},
+
+            </Typography>
+
+            <Grid container spacing={1}>
+                <Grid item xs={12} sm={6} md={6} elevation={0} className={classes.pos}>
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+
+
+                        <Card>
+
+                            <Typography variant="h7" component="p" align="center">
+                                Go back to shop
+
+                            </Typography>
+                            <div className={classes.media}>
+                                <Image src={shopIcon}/>
+                            </div>
+
+
+                        </Card>
+
+
                     </Link>
-                </List>
+                </Grid>
 
-            </Drawer>
-            <main
-                className={clsx(classes.content, {
-                    [classes.contentShift]: open,
-                })}
-            >
-                <div className={classes.drawerHeader} />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                    donec massa sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
-                    facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac
-                    tincidunt. Ornare suspendisse sed nisi lacus sed viverra tellus. Purus sit amet volutpat
-                    consequat mauris. Elementum eu facilisis sed odio morbi. Euismod lacinia at quis risus sed
-                    vulputate odio. Morbi tincidunt ornare massa eget egestas purus viverra accumsan in. In
-                    hendrerit gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem et
-                    tortor. Habitant morbi tristique senectus et. Adipiscing elit duis tristique sollicitudin
-                    nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
-                    accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
-            </main>
+
+                <Grid item xs={12} sm={6} md={6} elevation={0} className={classes.pos}>
+
+                    <Link to="/orders" style={{ textDecoration: 'none' }}>
+
+                        <Card>
+
+                            <Typography variant="h7" component="p" align="center">
+                                Order History
+
+                            </Typography>
+                            <div className={classes.media}>
+                                <Image src={orderIcon}/>
+                            </div>
+
+
+                        </Card>
+
+
+                    </Link>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} elevation={0} className={classes.pos}>
+
+                    <Link to="/profile" style={{ textDecoration: 'none' }}>
+                        <Card>
+
+                        <Typography variant="h7" component="p" align="center">
+                            Profile
+
+                        </Typography>
+                        <div className={classes.media}>
+                            <Image src={profileIcon}/>
+                        </div>
+
+
+                        </Card>
+                    </Link>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6} elevation={0} className={classes.pos}>
+
+                    <Link  style={{ textDecoration: 'none' }}to="/">
+
+                        <Card onClick={logout}>
+
+
+                                <Typography variant="h7" component="p" align="center">
+                                    Logout
+
+                                </Typography>
+                                <div className={classes.media}>
+                                    <Image src={logoutIcon}/>
+                                </div>
+
+
+                            </Card>
+
+
+                    </Link>
+                </Grid>
+            </Grid>
+
+        </Container>
         </div>
     );
 }

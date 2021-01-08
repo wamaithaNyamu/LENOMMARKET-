@@ -75,13 +75,14 @@ export default function Cart() {
             <Container >
                 <div className={classes.bread}>
                     <Breadcrumbs aria-label="breadcrumb" align="left">
-                        <Link to="/" >
+                        <Link to="/" style={{ textDecoration: 'none' }} >
                             Home
                         </Link>
 
                         <Link
                             color="textPrimary"
                             to="/login"
+                            style={{ textDecoration: 'none' }}
 
                         >
                             Catalog
