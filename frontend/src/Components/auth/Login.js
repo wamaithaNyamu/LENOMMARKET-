@@ -80,17 +80,11 @@ const Login = ({ login, isAuthenticated }) => {
             <Container component="main" maxWidth="xs">
                 <div className={classes.bread}>
                     <Breadcrumbs aria-label="breadcrumb" align="left">
-                        <Link to="/" >
-                            Home
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            &larr; Back Home
                         </Link>
 
-                        <Link
-                            color="textPrimary"
-                            to="/login"
 
-                        >
-                            Login
-                        </Link>
                     </Breadcrumbs>
                 </div>
                 <CssBaseline />

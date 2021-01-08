@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
-
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -31,6 +32,7 @@ import HistoryRoundedIcon from '@material-ui/icons/HistoryRounded';
 import ExitToAppRoundedIcon from '@material-ui/icons/ExitToAppRounded';
 import ContactPhoneRoundedIcon from '@material-ui/icons/ContactPhoneRounded';
 import LocationOnRoundedIcon from '@material-ui/icons/LocationOnRounded';
+import {logout} from "../../actions/auth";
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
@@ -126,7 +128,7 @@ function Copyright() {
     );
 }
 
-export default function PrimarySearchAppBar() {
+const Navbar = ({auth: { user, isAuthenticated, loading },logout}) => {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -159,14 +161,17 @@ export default function PrimarySearchAppBar() {
 
 
             <Divider />
-
+            {isAuthenticated ? (
             <List>
+                <Link to="/login"   style={{ textDecoration: 'none' }} color="textPrimary"></Link>
                 <ListItem button>
                     <ListItemIcon>
                         <AccountCircleRoundedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Profile" />
                 </ListItem>
+
+                <Link to="/login"   style={{ textDecoration: 'none' }} color="textPrimary"></Link>
                 <ListItem button>
                     <ListItemIcon>
                         <ShoppingBasketRoundedIcon />
@@ -174,19 +179,38 @@ export default function PrimarySearchAppBar() {
                     <ListItemText primary="Cart" />
                 </ListItem>
 
+                <Link to="/login"   style={{ textDecoration: 'none' }} color="textPrimary"></Link>
                 <ListItem button>
                     <ListItemIcon>
                         <HistoryRoundedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Orders" />
                 </ListItem>
+
+                <Link to="/"   style={{ textDecoration: 'none' }} color="textPrimary">
+
                 <ListItem button>
                     <ListItemIcon>
                         <ExitToAppRoundedIcon />
                     </ListItemIcon>
                     <ListItemText primary="Logout" />
                 </ListItem>
-            </List>
+                </Link>
+            </List> ) : (
+                <Link to="/login"   style={{ textDecoration: 'none' }} color="textPrimary">
+
+                <List>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <AccountCircleRoundedIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Login" />
+                    </ListItem>
+
+                </List>
+                </Link>
+
+                )}
 
             <Typography component="h3" variant="h8" color="textSecondary" align="center">
                 Company Info
@@ -215,6 +239,8 @@ export default function PrimarySearchAppBar() {
                 </ListItem>
 
             </List>
+
+
             <Divider />
             <Box mt={8}>
                 <Copyright />
@@ -259,19 +285,9 @@ export default function PrimarySearchAppBar() {
                         <LockOpenIcon />
 
                 </IconButton>
-                <Link to="/Register"  color="textPrimary">Register/Login</Link>
+                <Link to="/login"   style={{ textDecoration: 'none' }} color="textPrimary">Login</Link>
             </MenuItem>
-            <MenuItem>
-                <IconButton aria-label="show 4 new mails" color="inherit">
 
-                    <Link to="/cart"  color="textPrimary">
-
-                        <ShoppingCartSharpIcon/>
-                    </Link>
-
-                </IconButton>
-
-            </MenuItem>
 
         </Menu>
 
@@ -352,3 +368,12 @@ export default function PrimarySearchAppBar() {
         </div>
     );
 }
+Navbar.propTypes = {
+
+    auth: PropTypes.object.isRequired,
+};
+const mapStateToProps = (state) => ({
+    auth: state.auth,
+});
+
+export default connect(mapStateToProps)(Navbar);

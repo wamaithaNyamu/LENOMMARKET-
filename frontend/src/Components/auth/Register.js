@@ -86,17 +86,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <Container component="main" maxWidth="sm">
                 <div className={classes.bread}>
                     <Breadcrumbs aria-label="breadcrumb" align="left">
-                        <Link to="/" >
-                            Home
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            &larr; Back Home
                         </Link>
 
-                        <Link
-                            color="textPrimary"
-                            to="/register"
 
-                        >
-                            Register
-                        </Link>
                     </Breadcrumbs>
                 </div>
                 <div className={classes.paper}>
